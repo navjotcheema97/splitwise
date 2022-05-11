@@ -39,9 +39,9 @@ public class Driver {
 
         String action = inputArray[1];
         String rootUserId = inputArray[0];
-        List<String> userIds = new ArrayList<String>();
-        List<Double> paidAmountArray = new ArrayList<Double>();
-        List<Double> splitDetails = new ArrayList<Double>();
+        List<String> userIds = new ArrayList<>();
+        List<Double> paidAmountArray = new ArrayList<>();
+        List<Double> splitDetails = new ArrayList<>();
         userIds.add(rootUserId);
         switch (action) {
 

@@ -10,6 +10,4 @@ public class Expense {
 
     private List<Split> userSplits;
 
-    private String groupId;
-
 }

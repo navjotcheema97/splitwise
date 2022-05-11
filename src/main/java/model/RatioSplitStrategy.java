@@ -1,10 +1,25 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RatioSplitStrategy implements SplitStrategy {
 
     @Override
-    public Split getUserSplit(User user, double paidAmount, double totalAmount, double ratio) {
-        return new Split(user, paidAmount, totalAmount*ratio);
-    }
+    public List<Split> getUserSplit(List<String> userIds, List<Double> paidAmount, double totalAmount, List<Double> splitDetails) {
+        List<Split> splits = new ArrayList<>();
 
+        double splitConstant = 0.0;
+        for(Double splitRatio: splitDetails){
+            splitConstant += splitRatio;
+        }
+
+        for( int i=0; i< userIds.size(); i++ ){
+            double paidAmountForUser = (paidAmount.size() - 1 >= i) ? paidAmount.get(i) : 0.0;
+            double owedAmount = (totalAmount* splitDetails.get(i))/splitConstant;
+            Split split = new Split(userIds.get(i), paidAmountForUser, owedAmount);
+            splits.add(split);
+        }
+        return splits;
+    }
 }
